@@ -24,8 +24,10 @@ PS C:\PSScript> .\cleanup-reboot.ps1 -XMLBrokers YOURDDC.DOMAIN.LOCAL -xaserver 
  
 Will use YOURDDC.DOMAIN.LOCAL for the delivery controller address.
 Will drain users from SERVERNAME using red aggression level.
+.INPUTS
+None.
 .OUTPUTS
-None. The script will generate an report via email once the server is free of users.
+None.
 .NOTES
 NAME: drain-xaserver.ps1
 VERSION: 2.13
