@@ -1,32 +1,56 @@
-# cleanup-reboot
-Checks if a server is online, has logins allowed, but has no users. If this is found, the script sets the Logon mode to ProhibitLogonsUntilServerRestart
+# drain-xaserver
+Drains users (disconnected sessions) from a XenApp Server that is set to prohibit new logons.
 
 #Contributions to this script
 I'd like to highlight the posts that helped me write this scrip below.
-* http://carlwebster.com/finding-offline-servers-using-powershell-part-1-of-4/
-* http://blog.itvce.com/?p=79 Created by Dane Young
+* http://www.cloudenthusiast.com/post/Session-Host-Reboot-Crawler
+* http://www.teamas.co.uk/2012/06/presence-information-from-citrix.html
+* http://stackoverflow.com/questions/21882831/how-to-compare-two-dates-in-powershell-get-difference-in-minutes
+* http://www.powershellmagazine.com/2013/02/18/pstip-handling-negative-timespan-objects/
 
-# $ get-help .\cleanup-reboot.ps1 -full
+# PS> get-help .\drain-xaserver.ps1 -full
 
 NAME<br>
-    cleanup-reboot.ps1
+    drain-xaserver.ps1
     
 SYNOPSIS<br>
-    Script that checks if a server is online, has logins allowed, but has no users. If this is found, the script sets the Logon mode to ProhibitLogonsUntilServerRestart
+    This Script will drain users (disconnected sessions) from a XenApp Server that is set to prohibit new logons.
     
 SYNTAX<br>
-    PS> cleanup-reboot.ps1 [[-DeliveryControllers] <Object>] [<CommonParameters>]
+    PS> drain-xaserver.ps1 [-citrixServer] <Object> [[-XMLBrokers] <Object>] [[-aggression] <Object>] 
+    [<CommonParameters>]
+    
     
 DESCRIPTION<br>
-    Script that checks if a server is online, has logins allowed, but has no users. If this is found, the script sets the Logon mode to     ProhibitLogonsUntilServerRestart. It is recommended that this script be run as a Citrix admin. In addition, the Citrix Powershell modules should be installed
+    This Script will drain users (disconnected sessions) from a XenApp Server that is set to prohibit new logons. It is recommended that this script be run as a Citrix admin. In addition, the Citrix Powershell modules should be installed
+    
 
 PARAMETERS
-    -DeliveryControllers <Object>
-        Required parameter. Which Citrix Delivery Controller(s) (farm) to query.
+    -citrixServer <Object>
+        Required parameter. Which server to drain users from.
+        
+        Required?                    true
+        Position?                    1
+        Default value                $args[0]
+        Accept pipeline input?       false
+        Accept wildcard characters?  false
+        
+    -XMLBrokers <Object>
+        Optional parameter. Which Citrix XMLBroker(s) (farm) to query. Can be a list separated by commas.
         
         Required?                    false
-        Position?                    1
+        Position?                    2
         Default value                YOURDDC.DOMAIN.LOCAL
+        Accept pipeline input?       false
+        Accept wildcard characters?  false
+        
+    -aggression <Object>
+        Optional paramter. Determines how users are drained off system. Defaults to Green which is normal behavior. Users sessions will close once the disconnect. 
+        Yellow and Red agression are set in minutes in the constants section.
+        
+        Required?                    false
+        Position?                    3
+        Default value                Green
         Accept pipeline input?       false
         Accept wildcard characters?  false
         
@@ -34,40 +58,45 @@ PARAMETERS
         This cmdlet supports the common parameters: Verbose, Debug,
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,
         OutBuffer, PipelineVariable, and OutVariable. For more information, see 
-        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216). 
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+        
     
 INPUTS<br>
     None.
     
 OUTPUTS<br>
-    None. (Optional - The script will generate an report via email of any servers that are not servicing users.)
+    None.
     
 NOTES<pre>
-    NAME: cleanup-reboot.ps1
-    VERSION: 1.02
-    CHANGE LOG - Version - When - What - Who
-    1.00 - 12/12/2016 - Initial script - Alain Assaf
-    1.01 - 1/03/2017 - Added test to check RDP, ICA, and Session Reliability ports before setting LogOnMode to reboot - Alain Assaf
-    1.02 - 1/04/2017 - Added lines to check server load. If server has no users and a load higher than 3500, then change LogOnMode                              to reboot - Alain Assaf
-    AUTHOR: Alain Assaf
-    LASTEDIT: January 04, 2017</pre>
+    
+        NAME: drain-xaserver.ps1
+        VERSION: 2.13
+        LAST UPDATED: Feburary 22, 2017
+        AUTHOR: Alain Assaf</pre>
     
     -------------------------- EXAMPLE 1 --------------------------
     
-    PS C:\PSScript>.\cleanup-reboot.ps1
+    PS C:\PSScript>.\drain-xaserver.ps1 -xaserver SERVERNAME
     
-    Will use all default values.
-    Will query servers in the default Farm and find servers that are not servicing users.
+    Will use hardcoded Delivery Controller(s).
+    Will drain users from SERVERNAME using green aggression level.
     
     -------------------------- EXAMPLE 2 --------------------------
     
-    PS C:\PSScript>.\cleanup-reboot.ps1 -DeliveryController YOURDDC.DOMAIN.LOCAL
+    PS C:\PSScript>.\cleanup-reboot.ps1 -XMLBrokers YOURDDC.DOMAIN.LOCAL -xaserver SERVERNAME
     
     Will use YOURDDC.DOMAIN.LOCAL for the delivery controller address.
-    Will query servers in the YOURDDC.DOMAIN.LOCAL Farm and find servers that are not servicing users.
+    Will drain users from SERVERNAME using green aggression level.
+    
+    -------------------------- EXAMPLE 3 --------------------------
+    
+    PS C:\PSScript>.\cleanup-reboot.ps1 -XMLBrokers YOURDDC.DOMAIN.LOCAL -xaserver SERVERNAME -Aggression red
+    
+    Will use YOURDDC.DOMAIN.LOCAL for the delivery controller address.
+    Will drain users from SERVERNAME using red aggression level.
     
 # Legal and Licensing
-The cleanup-reboot.ps1 script is licensed under the [MIT license][].
+The drain-xaserver.ps1 script is licensed under the [MIT license][].
 
 [MIT license]: LICENSE
 
