@@ -30,8 +30,13 @@ None.
 None.
 .NOTES
 NAME: drain-xaserver.ps1
-VERSION: 2.13
-LAST UPDATED: Feburary 22, 2017
+VERSION: 2.10
+CHANGE LOG - Version - When - What - Who
+1.00 - 05/21/2009 -Initial script - Alain Assaf
+2.00 - 01/05/2017 - Updated for XenApp 6.5 - Alain Assaf
+2.01 - 01/09/2017 - Added more logic - Alain Assaf
+2.02 - 01/25/2017 - Added another line to count sessions while in loop. Changed Stop-xasession to actually work - Alain Assaf
+LAST UPDATED: March 03, 2017
 AUTHOR: Alain Assaf
 .LINK
  http://www.linkedin.com/in/alainassaf/
