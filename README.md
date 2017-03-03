@@ -26,6 +26,7 @@ DESCRIPTION<br>
     
 
 PARAMETERS<br>
+
     -citrixServer <Object>
         Required parameter. Which server to drain users from.
         
