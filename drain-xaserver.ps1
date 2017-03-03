@@ -30,12 +30,22 @@ None.
 None.
 .NOTES
 NAME: drain-xaserver.ps1
-VERSION: 2.10
+VERSION: 2.12
 CHANGE LOG - Version - When - What - Who
-1.00 - 05/21/2009 -Initial script - Alain Assaf
+1.00 - 05/21/2009 - Initial script - Alain Assaf
 2.00 - 01/05/2017 - Updated for XenApp 6.5 - Alain Assaf
 2.01 - 01/09/2017 - Added more logic - Alain Assaf
 2.02 - 01/25/2017 - Added another line to count sessions while in loop. Changed Stop-xasession to actually work - Alain Assaf
+2.03 - 02/14/2017 - Fixed comment-based help - Alain Assaf
+2.04 - 02/14/2017 - Recalculating sesscount within While loop for better results - Alain Assaf
+2.05 - 02/17/2017 - Added more lines to check session count - Alain Assaf
+2.06 - 02/21/2017 - Updated get-mymodule and get-mysnapins functions to new versions - Alain Assaf
+2.07 - 02/21/2017 - Used new-timespan to calculate idle user time - Alain Assaf
+2.08 - 02/21/2017 - Added verbose message to noet who is being disconnected - Alain Assaf
+2.09 - 02/21/2017 - Added hours to user idle time - Alain Assaf
+2.10 - 02/21/2017 - Removed unused code and variables - Alain Assaf
+2.11 - 02/21/2017 - Added some links to helpful articles - Alain Assaf
+2.12 - 03/03/2017 - Added Change log back to script - Alain Assaf
 LAST UPDATED: March 03, 2017
 AUTHOR: Alain Assaf
 .LINK
