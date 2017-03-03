@@ -25,7 +25,7 @@ DESCRIPTION<br>
     This Script will drain users (disconnected sessions) from a XenApp Server that is set to prohibit new logons. It is recommended that this script be run as a Citrix admin. In addition, the Citrix Powershell modules should be installed
     
 
-PARAMETERS
+PARAMETERS<br>
     -citrixServer <Object>
         Required parameter. Which server to drain users from.
         
@@ -68,7 +68,6 @@ OUTPUTS<br>
     None.
     
 NOTES<pre>
-    
         NAME: drain-xaserver.ps1
         VERSION: 2.13
         LAST UPDATED: Feburary 22, 2017
