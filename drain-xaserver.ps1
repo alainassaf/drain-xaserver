@@ -30,7 +30,7 @@ None.
 None.
 .NOTES
 NAME: drain-xaserver.ps1
-VERSION: 2.12
+VERSION: 2.13
 CHANGE LOG - Version - When - What - Who
 1.00 - 05/21/2009 - Initial script - Alain Assaf
 2.00 - 01/05/2017 - Updated for XenApp 6.5 - Alain Assaf
@@ -46,6 +46,7 @@ CHANGE LOG - Version - When - What - Who
 2.10 - 02/21/2017 - Removed unused code and variables - Alain Assaf
 2.11 - 02/21/2017 - Added some links to helpful articles - Alain Assaf
 2.12 - 03/03/2017 - Added Change log back to script - Alain Assaf
+2.13 - 03/06/2017 - Removed unused get-mymodule fuction - Alain Assaf
 LAST UPDATED: March 03, 2017
 AUTHOR: Alain Assaf
 .LINK
@@ -73,25 +74,6 @@ Param(
  
 #Constants
 $PSSnapins = ("Citrix*")
-$PSModules = ("Citrix*")
-
-### START FUNCTION: get-mymodule #####################################################
-Function Get-MyModule {
-    Param([string]$modules)
-    $ErrorActionPreference= 'silentlycontinue'
-        foreach ($mod in $modules.Split(",")) {
-            if(-not(Get-Module -name $mod)) {
-                if(Get-Module -ListAvailable | Where-Object { $_.name -like $mod }) {
-                    Import-Module -Name $mod
-                } else {
-                    write-warning "$mod PowerShell Module not available."
-                    write-warning "Please run this script from a system with the $mod PowerShell Module is installed."
-                    exit 1
-                }
-            }
-        }
-}
-### END FUNCTION: get-mymodule #####################################################
  
 ### START FUNCTION: get-mysnapin ###################################################
 Function Get-MySnapin {
@@ -135,7 +117,6 @@ function Test-Port{
 ### END FUNCTION: test-port ########################################################
 
 #Import Module(s) and Snapin(s)
-get-mymodule $PSModules
 get-MySnapin $PSSnapins
 
 #Find an XML Broker that is up
