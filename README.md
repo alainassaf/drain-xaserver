@@ -2,7 +2,7 @@
 Drains users (disconnected sessions) from a XenApp Server that is set to prohibit new logons.
 
 #Contributions to this script
-I'd like to highlight the posts that helped me write this scrip below.
+I'd like to highlight the posts that helped me write this script below.
 * http://www.cloudenthusiast.com/post/Session-Host-Reboot-Crawler
 * http://www.teamas.co.uk/2012/06/presence-information-from-citrix.html
 * http://stackoverflow.com/questions/21882831/how-to-compare-two-dates-in-powershell-get-difference-in-minutes
@@ -70,7 +70,7 @@ OUTPUTS<br>
     
 NOTES<pre>
         NAME: drain-xaserver.ps1
-        VERSION: 2.12
+        VERSION: 2.13
         CHANGE LOG - Version - When - What - Who
         1.00 - 05/21/2009 - Initial script - Alain Assaf
         2.00 - 01/05/2017 - Updated for XenApp 6.5 - Alain Assaf
@@ -86,7 +86,8 @@ NOTES<pre>
         2.10 - 02/21/2017 - Removed unused code and variables - Alain Assaf
         2.11 - 02/21/2017 - Added some links to helpful articles - Alain Assaf
         2.12 - 03/03/2017 - Added Change log back to script - Alain Assaf
-        LAST UPDATED: March 03, 2017
+        2.13 - 03/06/2017 - Removed unused get-mymodule fuction - Alain Assaf
+        LAST UPDATED: March 06, 2017
         AUTHOR: Alain Assaf</pre>
     
     -------------------------- EXAMPLE 1 --------------------------
