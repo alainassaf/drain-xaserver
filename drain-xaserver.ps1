@@ -47,7 +47,7 @@ CHANGE LOG - Version - When - What - Who
 2.11 - 02/21/2017 - Added some links to helpful articles - Alain Assaf
 2.12 - 03/03/2017 - Added Change log back to script - Alain Assaf
 2.13 - 03/06/2017 - Removed unused get-mymodule fuction - Alain Assaf
-LAST UPDATED: March 03, 2017
+LAST UPDATED: March 06, 2017
 AUTHOR: Alain Assaf
 .LINK
  http://www.linkedin.com/in/alainassaf/
